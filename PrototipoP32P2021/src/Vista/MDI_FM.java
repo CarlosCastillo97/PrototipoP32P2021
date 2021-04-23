@@ -8,13 +8,18 @@ package Vista;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Dimension;
 import javax.swing.UIManager;
-
+import Vista.Mantenimiento_Peliculas;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author OtakuGT
  */
 public class MDI_FM extends javax.swing.JFrame {
-
+ private Mantenimiento_Peliculas frmPeliculas;
+ private Mantenimiento_Rentas frmRentas;
+ private Mantenimiento_Tiendas frmTiendas;
     /**
      * Creates new form MDI_P
      */
@@ -41,6 +46,10 @@ public class MDI_FM extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
         jMenu7 = new javax.swing.JMenu();
@@ -81,6 +90,38 @@ public class MDI_FM extends javax.swing.JFrame {
             }
         });
         jMenu4.add(jMenuItem2);
+
+        jMenuItem3.setText("Peliculas");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem3);
+
+        jMenuItem4.setText("Genero Peliculas");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem4);
+
+        jMenuItem5.setText("Rentas");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem5);
+
+        jMenuItem6.setText("Tiendas");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem6);
 
         jMenuBar2.add(jMenu4);
 
@@ -128,6 +169,34 @@ public class MDI_FM extends javax.swing.JFrame {
         Panel.add(frm_empleados);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+     try {
+         frmPeliculas = new Mantenimiento_Peliculas();
+     } catch (SQLException ex) {
+         Logger.getLogger(MDI_FM.class.getName()).log(Level.SEVERE, null, ex);
+     }
+     Panel.add(frmPeliculas);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+     try {
+         frmRentas = new Mantenimiento_Rentas();
+     } catch (SQLException ex) {
+         Logger.getLogger(MDI_FM.class.getName()).log(Level.SEVERE, null, ex);
+     }
+     Panel.add(frmRentas);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+
+     frmTiendas = new Mantenimiento_Tiendas();
+     Panel.add(frmTiendas);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -160,5 +229,9 @@ public class MDI_FM extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     // End of variables declaration//GEN-END:variables
 }

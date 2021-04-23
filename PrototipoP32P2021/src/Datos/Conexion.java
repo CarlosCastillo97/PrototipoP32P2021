@@ -8,7 +8,7 @@ import java.sql.*;
  */
 public class Conexion {
 
-    private static final String JDBC_URL = "jdbc:mysql://localhost/filmmagic?useSSL=false&serverTimezone=UTC";
+    private static final String JDBC_URL = "jdbc:mysql://localhost/labfm?useSSL=false&serverTimezone=UTC";
     private static final String JDBC_USER = "root";
     private static final String JDBC_PASS = "";
 
