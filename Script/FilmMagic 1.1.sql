@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS `FilmMagic`.`Clientes` (
   `Correo_Cliente` VARCHAR(45) NOT NULL,
   `Mora_Acumulada` VARCHAR(45) NULL,
   `Renta_Acumulada` VARCHAR(45) NULL,
+  `Bonos_Acumulados` VARCHAR(45) NULL,
   PRIMARY KEY (`Membresia`))
 ENGINE = InnoDB;
 
@@ -34,12 +35,16 @@ ENGINE = InnoDB;
 -- Table `FilmMagic`.`Empleados`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `FilmMagic`.`Empleados` (
-  `Codigo_Empleado` VARCHAR(100) NOT NULL,
-  `Nombre_Empleado` VARCHAR(45) NOT NULL,
-  `Estado_Empleado` VARCHAR(45) NOT NULL,
-  `User_Empleado` VARCHAR(45) NOT NULL,
-  `Pass_Empleado` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`Codigo_Empleado`))
+  `PK_id_usuario` VARCHAR(25) NOT NULL,
+  `nombre_usuario` VARCHAR(45) NULL DEFAULT NULL,
+  `apellido_usuario` VARCHAR(45) NULL DEFAULT NULL,
+  `username_usuario` VARCHAR(45) NULL DEFAULT NULL,
+  `password_usuario` VARCHAR(45) NULL DEFAULT NULL,
+  `correo_usuario` VARCHAR(45) NULL DEFAULT NULL,
+  `cambio_password` TINYINT NULL DEFAULT NULL,
+  `estado_usuario` TINYINT NULL DEFAULT NULL,
+  `ultima_conexion` DATETIME NULL DEFAULT NULL,
+  PRIMARY KEY (`PK_id_usuario`))
 ENGINE = InnoDB;
 
 
