@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Santiago Martinez Diaz
+ * @author OtakuGT
  */
 public class Mantenimiento_Rentas extends javax.swing.JInternalFrame {
 //Metodo Llenado de Combos consulta los dominios y datos TipoPersonaDAO y TipoPersona para obetner el codigo en el combobox

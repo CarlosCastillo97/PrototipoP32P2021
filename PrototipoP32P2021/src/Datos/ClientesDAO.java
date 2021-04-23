@@ -19,10 +19,10 @@ import java.util.List;
  */
 public class ClientesDAO {
     private static final String SQL_SELECT = "SELECT * FROM Clientes";
-    private static final String SQL_INSERT = "INSERT INTO Clientes(Membresia, Nombre_Cliente, Dpi_Cliente, Telefono_Cliente, Direccion_Cliente, Correo_Cliente, Mora_Acumulada, Renta_Acumulada, Bonos_Acumulados) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    private static final String SQL_UPDATE = "UPDATE Clientes SET Membresia=?, Nombre_Cliente=?, Dpi_Cliente=?, Telefono_Cliente=?, Direccion_Cliente=?, Correo_Cliente=?, Mora_Acumulada=?, Renta_Acumulada=?, Bonos_Acumulados=? WHERE Membresia = ?";
-    private static final String SQL_DELETE = "DELETE FROM Clientes WHERE Membresia=?";
-    private static final String SQL_QUERY = "SELECT Membresia, Nombre_Cliente, Dpi_Cliente, Telefono_Cliente, Direccion_Cliente, Correo_Cliente, Mora_Acumulada, Renta_Acumulada, Bonos_Acumulados FROM Clientes WHERE Membresia = ?";
+    private static final String SQL_INSERT = "INSERT INTO Clientes(Numero_Tarjeta, Nombre_Cliente, Dpi_Cliente, Telefono_Cliente, Direccion_Cliente, Correo_Cliente, Mora_Acumulada, Renta_Acumulada, Bonos_Acumulados) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String SQL_UPDATE = "UPDATE Clientes SET Numero_Tarjeta=?, Nombre_Cliente=?, Dpi_Cliente=?, Telefono_Cliente=?, Direccion_Cliente=?, Correo_Cliente=?, Mora_Acumulada=?, Renta_Acumulada=?, Bonos_Acumulados=? WHERE Numero_Tarjeta = ?";
+    private static final String SQL_DELETE = "DELETE FROM Clientes WHERE Numero_Tarjeta=?";
+    private static final String SQL_QUERY = "SELECT Numero_Tarjeta, Nombre_Cliente, Dpi_Cliente, Telefono_Cliente, Direccion_Cliente, Correo_Cliente, Mora_Acumulada, Renta_Acumulada, Bonos_Acumulados FROM Clientes WHERE Numero_Tarjeta = ?";
     
     public List<Clientes> select() {
         Connection conn = null;
@@ -35,7 +35,7 @@ public class ClientesDAO {
             stmt = conn.prepareStatement(SQL_SELECT);
             rs = stmt.executeQuery();
             while (rs.next()) {
-                String Membresia = rs.getString("Membresia");
+                String Membresia = rs.getString("Numero_Tarjeta");
                 String Nombre = rs.getString("Nombre_Cliente");
                 String Dpi = rs.getString("Dpi_Cliente");
                 String Telefono = rs.getString("Telefono_Cliente");
@@ -83,7 +83,7 @@ public class ClientesDAO {
             stmt.setString(1, cliente.getMembresia());
             rs = stmt.executeQuery();
             while (rs.next()) {
-                String membresia = rs.getString("Membresia");
+                String membresia = rs.getString("Numero_Tarjeta");
                 String nombre = rs.getString("Nombre_Cliente");
                 String dpi = rs.getString("Dpi_Cliente");
                 String tel = rs.getString("Telefono_Cliente");

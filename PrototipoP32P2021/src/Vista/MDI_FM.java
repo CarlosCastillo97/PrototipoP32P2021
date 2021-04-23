@@ -170,12 +170,10 @@ public class MDI_FM extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-     try {
+
          frmPeliculas = new Mantenimiento_Peliculas();
-     } catch (SQLException ex) {
-         Logger.getLogger(MDI_FM.class.getName()).log(Level.SEVERE, null, ex);
-     }
-     Panel.add(frmPeliculas);
+         frmPeliculas.setVisible(true);
+        Panel.add(frmPeliculas);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
