@@ -5,6 +5,8 @@
  */
 package Dominio;
 
+import Datos.ClientesDAO;
+
 /**
  *
  * @author OtakuGT
@@ -99,5 +101,6 @@ public class Clientes {
     public String toString() {
         return "Clientes{" + "Membresia=" + Membresia + ", Nombre=" + Nombre + ", DPI=" + DPI + ", Telefono=" + Telefono + ", Direccion=" + Direccion + ", Correo=" + Correo + ", Mora=" + Mora + ", RentasAC=" + RentasAC + ", BonosAC=" + BonosAC + '}';
     }
+
 }
 

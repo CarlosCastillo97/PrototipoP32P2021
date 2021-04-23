@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
  * @author OtakuGT
  */
 public class Mantenimiento_Clientes extends javax.swing.JInternalFrame {
+    
 public void llenadoDeTablas() {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("Membresia");
@@ -59,6 +60,10 @@ public void llenadoDeTablas() {
         txtTelefono.setText("");
         txtDireccion.setText("");
         txtCorreo.setText("");
+        lblMora.setText("0");
+        lblRenta.setText("0");
+        lblBonos.setText("0");
+                
 
 
     }
@@ -105,7 +110,7 @@ public void llenadoDeTablas() {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos"));
 
-        jLabel1.setText("Numero Membresia");
+        jLabel1.setText("Membresia");
 
         jLabel2.setText("Nombre");
 
@@ -222,9 +227,9 @@ public void llenadoDeTablas() {
                     .addComponent(jLabel7)
                     .addComponent(lblMora))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(lblRenta))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblRenta)
+                    .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
@@ -240,10 +245,25 @@ public void llenadoDeTablas() {
         });
 
         BtnModificar.setText("Modificar");
+        BtnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnModificarActionPerformed(evt);
+            }
+        });
 
         BtnEliminar.setText("Eliminar");
+        BtnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEliminarActionPerformed(evt);
+            }
+        });
 
         BtnBuscar.setText("Buscar");
+        BtnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnBuscarActionPerformed(evt);
+            }
+        });
 
         Tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -285,9 +305,9 @@ public void llenadoDeTablas() {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -297,7 +317,7 @@ public void llenadoDeTablas() {
                     .addComponent(BtnModificar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -333,6 +353,60 @@ public void llenadoDeTablas() {
         }
         llenadoDeTablas();
     }//GEN-LAST:event_BtnAgregarActionPerformed
+
+    private void BtnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnModificarActionPerformed
+        ClientesDAO clientedao = new ClientesDAO();
+        Clientes clientesmod = new Clientes();
+        //Clientes modificar
+        clientesmod.setMembresia(txtMembresia.getText());
+        clientesmod.setNombre(txtNombre.getText());
+        clientesmod.setDPI(txtDPI.getText()); 
+        clientesmod.setTelefono(txtTelefono.getText());
+        clientesmod.setDireccion(txtDireccion.getText()); 
+        clientesmod.setCorreo(txtCorreo.getText());
+        clientesmod.setMora(Integer.parseInt(lblMora.getText()));
+        clientesmod.setRentasAC(Integer.parseInt(lblRenta.getText()));
+        clientesmod.setBonosAC(Integer.parseInt(lblBonos.getText()));
+
+        
+        clientedao.update(clientesmod);
+        JOptionPane.showMessageDialog(null, "Cliente Modificado Exitosamente");
+        llenadoDeTablas();
+        limpiar();            
+    }//GEN-LAST:event_BtnModificarActionPerformed
+
+    private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
+        Clientes clienteeliminar = new Clientes();
+        ClientesDAO clientesdao = new ClientesDAO();
+
+        clienteeliminar.setMembresia(txtMembresia.getText());
+        clientesdao.delete(clienteeliminar);
+        JOptionPane.showMessageDialog(null, "Usuario Eliminado.");
+        llenadoDeTablas();
+        limpiar();
+    }//GEN-LAST:event_BtnEliminarActionPerformed
+
+    private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
+        Clientes buscarc = new Clientes();
+        ClientesDAO clientesdao = new ClientesDAO();
+        buscarc.setMembresia(txtMembresia.getText());
+
+        buscarc = clientesdao.query(buscarc);
+
+        txtMembresia.setText(String.valueOf(buscarc.getMembresia()));
+        txtNombre.setText(String.valueOf(buscarc.getNombre()));
+        txtDPI.setText(String.valueOf(buscarc.getDPI()));
+        txtTelefono.setText(String.valueOf(buscarc.getTelefono()));
+        txtDireccion.setText(String.valueOf(buscarc.getDireccion()));
+        txtCorreo.setText(String.valueOf(buscarc.getCorreo()));
+        lblMora.setText(String.valueOf(buscarc.getMora()));
+        lblRenta.setText(String.valueOf(buscarc.getMora()));
+        lblBonos.setText(String.valueOf(buscarc.getMora()));
+       
+        {
+        }
+        llenadoDeTablas();
+    }//GEN-LAST:event_BtnBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

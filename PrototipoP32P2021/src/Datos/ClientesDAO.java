@@ -18,17 +18,11 @@ import java.util.List;
  * @author OtakuGT
  */
 public class ClientesDAO {
-     private static final String SQL_SELECT = "SELECT * FROM Clientes";
+    private static final String SQL_SELECT = "SELECT * FROM Clientes";
     private static final String SQL_INSERT = "INSERT INTO Clientes(Membresia, Nombre_Cliente, Dpi_Cliente, Telefono_Cliente, Direccion_Cliente, Correo_Cliente, Mora_Acumulada, Renta_Acumulada, Bonos_Acumulados) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    private static final String SQL_UPDATE = "UPDATE Clientes Nombre_Cliente=?, Dpi_Cliente=?, Telefono_Cliente=?, Direccion_Cliente=?, Correo_Cliente=?, Mora_Acumulada=?, Renta_Acumulada=?, Bonos_Acumulados=? WHERE Membresia = ?";
+    private static final String SQL_UPDATE = "UPDATE Clientes SET Membresia=?, Nombre_Cliente=?, Dpi_Cliente=?, Telefono_Cliente=?, Direccion_Cliente=?, Correo_Cliente=?, Mora_Acumulada=?, Renta_Acumulada=?, Bonos_Acumulados=? WHERE Membresia = ?";
     private static final String SQL_DELETE = "DELETE FROM Clientes WHERE Membresia=?";
     private static final String SQL_QUERY = "SELECT Membresia, Nombre_Cliente, Dpi_Cliente, Telefono_Cliente, Direccion_Cliente, Correo_Cliente, Mora_Acumulada, Renta_Acumulada, Bonos_Acumulados FROM Clientes WHERE Membresia = ?";
- 
-    Conexion conectar = new Conexion();
-    Connection conn = null;
-    PreparedStatement stmt = null;
-    ResultSet rs = null;
-    Clientes clientes = null;
     
     public List<Clientes> select() {
         Connection conn = null;
@@ -165,6 +159,7 @@ public class ClientesDAO {
             stmt.setInt(7, cliente.getMora());
             stmt.setInt(8, cliente.getRentasAC());
             stmt.setInt(9, cliente.getBonosAC());
+            stmt.setString(10, cliente.getMembresia());
             rows = stmt.executeUpdate();
             //System.out.println("Registros actualizado:" + rows);
 

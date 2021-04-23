@@ -2,13 +2,17 @@ package Datos;
 
 import java.sql.*;
 
+/**
+ *
+ * @author OtakuGT
+ */
 public class Conexion {
 
-    // Estas constantes deben cambiarse temporalmente para probarlo localmente
-
-    private static final String JDBC_URL = "jdbc:mysql://localhost/umg?useSSL=false&serverTimezone=UTC";
+    private static final String JDBC_URL = "jdbc:mysql://localhost/filmmagic?useSSL=false&serverTimezone=UTC";
     private static final String JDBC_USER = "root";
-    private static final String JDBC_PASS = "informaticdv2016";
+    private static final String JDBC_PASS = "";
+
+
 
 
     public static Connection getConnection() throws SQLException {
@@ -38,5 +42,7 @@ public class Conexion {
            ex.printStackTrace(System.out);
         }
     }
-    
+   
 }
+
+
