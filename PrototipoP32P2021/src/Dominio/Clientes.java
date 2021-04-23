@@ -16,9 +16,9 @@ public class Clientes {
     private String Telefono;
     private String Direccion;
     private String Correo;
-    private String Mora;
-    private String RentasAC;
-    private String BonosAC;
+    private int Mora;
+    private int RentasAC;
+    private int BonosAC;
 
     public Clientes() {
     }
@@ -71,27 +71,27 @@ public class Clientes {
         this.Correo = Correo;
     }
 
-    public String getMora() {
+    public int getMora() {
         return Mora;
     }
 
-    public void setMora(String Mora) {
+    public void setMora(int Mora) {
         this.Mora = Mora;
     }
 
-    public String getRentasAC() {
+    public int getRentasAC() {
         return RentasAC;
     }
 
-    public void setRentasAC(String RentasAC) {
+    public void setRentasAC(int RentasAC) {
         this.RentasAC = RentasAC;
     }
 
-    public String getBonosAC() {
+    public int getBonosAC() {
         return BonosAC;
     }
 
-    public void setBonosAC(String BonosAC) {
+    public void setBonosAC(int BonosAC) {
         this.BonosAC = BonosAC;
     }
 

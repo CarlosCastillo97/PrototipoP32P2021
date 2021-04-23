@@ -5,17 +5,62 @@
  */
 package Vista;
 
+import Datos.ClientesDAO;
+import Dominio.Clientes;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author OtakuGT
  */
 public class Mantenimiento_Clientes extends javax.swing.JInternalFrame {
+public void llenadoDeTablas() {
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Membresia");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("DPI");
+        modelo.addColumn("Tel");
+        modelo.addColumn("Direccion");
+        modelo.addColumn("Correo");
+        modelo.addColumn("Mora Acumulada");
+        modelo.addColumn("Rentas Acumuladas");
+        modelo.addColumn("Bonos Acumulados");
+        ClientesDAO clientesdao = new ClientesDAO();
+        List<Clientes> clientes = clientesdao.select();
+        Tabla.setModel(modelo);
+        Object[] objeto = new Object[9];
+        for (int i = 0; i < clientes.size(); i++) {
+            objeto[0] = clientes.get(i).getMembresia();
+            objeto[1] = clientes.get(i).getNombre();
+            objeto[2] = clientes.get(i).getDPI();
+            objeto[3] = clientes.get(i).getTelefono();
+            objeto[4] = clientes.get(i).getDireccion();
+            objeto[5] = clientes.get(i).getCorreo();
+            objeto[6] = clientes.get(i).getMora();
+            objeto[7] = clientes.get(i).getRentasAC();
+            objeto[8] = clientes.get(i).getBonosAC();
 
+            modelo.addRow(objeto);
+        }
+    }
     /**
      * Creates new form Mantenimiento_Clientes
      */
     public Mantenimiento_Clientes() {
         initComponents();
+        llenadoDeTablas();
+    }
+     public void limpiar() {
+        txtMembresia.setText("");
+        txtNombre.setText("");
+        txtDPI.setText("");
+        txtTelefono.setText("");
+        txtDireccion.setText("");
+        txtCorreo.setText("");
+
+
     }
 
     /**
@@ -42,11 +87,11 @@ public class Mantenimiento_Clientes extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        lblMora = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        lblRenta = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        lblBonos = new javax.swing.JLabel();
         BtnAgregar = new javax.swing.JButton();
         BtnModificar = new javax.swing.JButton();
         BtnEliminar = new javax.swing.JButton();
@@ -59,12 +104,6 @@ public class Mantenimiento_Clientes extends javax.swing.JInternalFrame {
         setTitle("Clientes");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos"));
-
-        txtDPI.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDPIActionPerformed(evt);
-            }
-        });
 
         jLabel1.setText("Numero Membresia");
 
@@ -141,15 +180,15 @@ public class Mantenimiento_Clientes extends javax.swing.JInternalFrame {
 
         jLabel7.setText("Mora:");
 
-        jLabel8.setText("0");
+        lblMora.setText("0");
 
         jLabel9.setText("Renta:");
 
-        jLabel10.setText("0");
+        lblRenta.setText("0");
 
         jLabel11.setText("Bonos:");
 
-        jLabel12.setText("0");
+        lblBonos.setText("0");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -161,7 +200,7 @@ public class Mantenimiento_Clientes extends javax.swing.JInternalFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel12))
+                        .addComponent(lblBonos))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9)
@@ -169,10 +208,10 @@ public class Mantenimiento_Clientes extends javax.swing.JInternalFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel10))
+                                .addComponent(lblRenta))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(27, 27, 27)
-                                .addComponent(jLabel8)))))
+                                .addComponent(lblMora)))))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -181,19 +220,24 @@ public class Mantenimiento_Clientes extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jLabel8))
+                    .addComponent(lblMora))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jLabel10))
+                    .addComponent(lblRenta))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jLabel12))
+                    .addComponent(lblBonos))
                 .addContainerGap())
         );
 
         BtnAgregar.setText("Agregar");
+        BtnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAgregarActionPerformed(evt);
+            }
+        });
 
         BtnModificar.setText("Modificar");
 
@@ -259,9 +303,36 @@ public class Mantenimiento_Clientes extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtDPIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDPIActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDPIActionPerformed
+    private void BtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarActionPerformed
+        Clientes clientesInsert = new Clientes();
+        ClientesDAO clientesdao = new ClientesDAO();
+        
+        if (txtMembresia.getText().length() != 0 && txtNombre.getText().length() != 0
+                && txtTelefono.getText().length() != 0 && txtCorreo.getText().length() != 0 && txtDPI.getText().length() !=0) {
+            {
+
+                clientesInsert.setMembresia(txtMembresia.getText());
+                clientesInsert.setNombre(txtNombre.getText());
+                clientesInsert.setDPI(txtDPI.getText());
+                clientesInsert.setTelefono(txtTelefono.getText());
+                clientesInsert.setDireccion(txtDireccion.getText());
+                clientesInsert.setCorreo(txtCorreo.getText());
+                clientesInsert.setMora(0);
+                clientesInsert.setRentasAC(0);
+                clientesInsert.setBonosAC(0);
+                {
+                    JOptionPane.showMessageDialog(null, "Usuario registrado Exitosamente");
+                }
+                limpiar();
+                llenadoDeTablas();
+                clientesdao.insert(clientesInsert);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Los campos estan vacios");
+            llenadoDeTablas();
+        }
+        llenadoDeTablas();
+    }//GEN-LAST:event_BtnAgregarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -271,20 +342,20 @@ public class Mantenimiento_Clientes extends javax.swing.JInternalFrame {
     private javax.swing.JButton BtnModificar;
     private javax.swing.JTable Tabla;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblBonos;
+    private javax.swing.JLabel lblMora;
+    private javax.swing.JLabel lblRenta;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDPI;
     private javax.swing.JTextField txtDireccion;
